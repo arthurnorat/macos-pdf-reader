@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Xcode: per-user state and build output
+xcuserdata/
+DerivedData/
+build/
+
+# Secrets (none today; ignored before they can ever exist)
+.env*
+*.pem
+*.p12
+*.key
+*.cer
+*.mobileprovision
+
+# Test PDFs live outside the repository; never commit real case files
+*.pdf
