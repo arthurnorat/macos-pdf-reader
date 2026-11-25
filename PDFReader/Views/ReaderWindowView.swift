@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ReaderWindowView: View {
 
-    @Binding var url: URL?
+    @Binding var tab: ReaderTab?
 
     @State private var viewModel = ReaderViewModel()
     @Environment(\.openWindow) private var openWindow
@@ -14,21 +14,26 @@ struct ReaderWindowView: View {
             // Accept drops on the whole window, not only on drawn content.
             .frame(minWidth: 480, maxWidth: .infinity, minHeight: 360, maxHeight: .infinity)
             .contentShape(Rectangle())
-            .navigationTitle(url?.lastPathComponent ?? "PDFReader")
-            .onChange(of: url, initial: true) {
-                viewModel.load(url)
+            .background(WindowTabbing())
+            .navigationTitle(tab?.url.lastPathComponent ?? "PDFReader")
+            .onChange(of: tab, initial: true) {
+                viewModel.load(tab?.url)
             }
             .dropDestination(for: URL.self) { droppedURLs, _ in
-                router.open(droppedURLs, into: $url)
+                router.open(droppedURLs, into: $tab)
                 return true
             }
             .onOpenURL { openedURL in
-                router.open([openedURL], into: $url)
+                // SwiftUI brings this window to the front after the handler
+                // returns; open on the next run loop so the new tab stays selected.
+                DispatchQueue.main.async {
+                    router.open([openedURL], into: $tab)
+                }
             }
             // Deliver Finder opens to an existing window; otherwise SwiftUI
-            // creates a new empty one and the same file opens twice.
+            // creates a new one and an empty window is left behind.
             .handlesExternalEvents(preferring: ["*"], allowing: ["*"])
-            .focusedSceneValue(\.documentURL, $url)
+            .focusedSceneValue(\.readerTab, $tab)
     }
 
     @ViewBuilder
@@ -60,8 +65,8 @@ struct ReaderWindowView: View {
     private var openButton: some View {
         Button("Open…") {
             // Replace the failed file in this window instead of opening a new one.
-            if case .failed = viewModel.state { url = nil }
-            router.open(PDFOpenPanel.choosePDFs(), into: $url)
+            if case .failed = viewModel.state { tab = nil }
+            router.open(PDFOpenPanel.choosePDFs(), into: $tab)
         }
     }
 }

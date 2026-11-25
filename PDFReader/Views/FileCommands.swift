@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FileCommands: Commands {
 
-    @FocusedValue(\.documentURL) private var focusedDocumentURL
+    @FocusedValue(\.readerTab) private var focusedTab
     @Environment(\.openWindow) private var openWindow
 
     private let recents = RecentDocumentsService.shared
@@ -12,14 +12,14 @@ struct FileCommands: Commands {
     var body: some Commands {
         CommandGroup(after: .newItem) {
             Button("Open…") {
-                router.open(PDFOpenPanel.choosePDFs(), into: focusedDocumentURL)
+                router.open(PDFOpenPanel.choosePDFs(), into: focusedTab)
             }
             .keyboardShortcut("o")
 
             Menu("Open Recent") {
                 ForEach(recents.urls, id: \.self) { url in
                     Button(url.lastPathComponent) {
-                        router.open([url], into: focusedDocumentURL)
+                        router.open([url], into: focusedTab)
                     }
                 }
 

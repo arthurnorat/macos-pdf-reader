@@ -10,8 +10,8 @@ import SwiftUI
 @main
 struct PDFReaderApp: App {
     var body: some Scene {
-        WindowGroup(for: URL.self) { $url in
-            ReaderWindowView(url: $url)
+        WindowGroup(for: ReaderTab.self) { $tab in
+            ReaderWindowView(tab: $tab)
         }
         .commands {
             FileCommands()
