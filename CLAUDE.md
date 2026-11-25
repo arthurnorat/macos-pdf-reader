@@ -60,13 +60,12 @@ Phase 2 (each its own step, detailed only after the MVP runs): search with
 remember last position per file.
 
 ## Status
-Current: step 02 done (verified by Arthur). Next: trim code comments, then
-step 03.
+Current: step 03 done (verified by Arthur). Next: step 04.
 Decided in step 01: name PDFReader, bundle id `com.arthurnorat.PDFReader`,
 target macOS 14.0; PDF declared as a document type (Viewer, Alternate) in
 `PDFReader/Info.plist`; recents via `NSDocumentController`.
-Note for step 03: `WindowGroup(for: URL.self)` dedupes windows by value, so
-the same file in two tabs needs a per-tab value (URL + UUID).
+Decided in step 03: every file opens as a new tab (`tabbingMode = .preferred`);
+reopening a file creates another tab; window value is `ReaderTab` (URL + UUID).
 Open decisions to confirm with Arthur before the step that needs them:
 - Vim-style keys (`j`/`k`/`g`/`G`) in addition to the macOS ones (before
   step 04).

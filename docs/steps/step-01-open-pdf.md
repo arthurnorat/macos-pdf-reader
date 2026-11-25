@@ -60,9 +60,9 @@ do PDF (`nil` = vazia) e tem o próprio ViewModel e `PDFDocument`.
 
 **Consequências.** Janelas independentes, base para as abas do step 03. Em
 troca, fizemos à mão o menu (`FileCommands`), a abertura pelo Finder e o
-`WindowRouter`. O `WindowGroup(for:)` não duplica janelas com o mesmo valor:
-para o mesmo arquivo em duas abas, o step 03 precisará de um valor por aba
-(URL + `UUID`). Reverter exigiria um tipo `NSDocument` e abrir mão das abas
+`WindowRouter`. O `WindowGroup(for:)` não duplica janelas com o mesmo valor;
+o step 03 troca o valor por `ReaderTab` (URL + `UUID`) para permitir o mesmo
+arquivo em várias abas. Reverter exigiria um tipo `NSDocument` e abrir mão das abas
 repetidas.
 
 ### ADR 2 — Sandbox sem acesso à rede

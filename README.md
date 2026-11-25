@@ -18,8 +18,8 @@ telemetry. Documents never leave your Mac.
 - Open a PDF from **File › Open…** (⌘O), **File › Open Recent**, by dragging
   it into a window, or from the Finder (double-click, *Open With*, or
   dropping it on the Dock icon).
-- Each file opens in its own window. An empty window is reused for the first
-  file you open.
+- Files open as tabs in the same window; the same file can be open in
+  several tabs. An empty tab is reused for the next file you open.
 - Clear error messages for missing files, files that are not PDFs, and
   damaged or password-protected PDFs.
 - One full page at a time: each page fits the window from top to bottom and
@@ -62,8 +62,9 @@ telemetria. Os documentos nunca saem do seu Mac.
 - Abra um PDF por **File › Open…** (⌘O), **File › Open Recent**, arrastando
   para uma janela ou pelo Finder (duplo clique, *Abrir com* ou soltando no
   ícone do Dock).
-- Cada arquivo abre na própria janela. Uma janela vazia é reaproveitada
-  para o primeiro arquivo aberto.
+- Os arquivos abrem como abas na mesma janela; o mesmo arquivo pode estar
+  aberto em várias abas. Uma aba vazia é reaproveitada para o próximo
+  arquivo aberto.
 - Mensagens de erro claras para arquivo não encontrado, arquivo que não é
   PDF e PDF danificado ou protegido por senha.
 - Uma folha inteira por vez: cada página ocupa a janela de cima a baixo e
