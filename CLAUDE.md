@@ -54,14 +54,24 @@ MVP (straight to `main`, one step at a time, stop after each):
 3. `step-03-tabs`: native tabs, same file open in two tabs.
 4. `step-04-keyboard`: `KeyboardPDFView` and `KeyBindings.swift`.
 
-Phase 2 (each its own step, detailed only after the MVP runs): search with
-`/`, document indexer by "Num." with a side list, copy "Num. X - Pág. N"
-(`y`/`Y`, double click on the footer), quick switcher and document jumps,
-remember last position per file.
+Tooling (before Phase 2, each its own step):
+5. `step-05-ci`: GitHub Actions building the app on every push.
+6. `step-06-lint-format`: SwiftLint and SwiftFormat.
+
+Phase 2 (in this order; each detailed only when it starts; ask Arthur
+whether a step needs its own branch):
+7. `step-07-copy-num`: copy "Num. X - Pág. N" of the current page (shortcut
+   and double click on the footer to be decided); builds the footer parser.
+8. `step-08-document-index`: side list of documents by "Num." (reuses the
+   parser).
+9. `step-09-document-jumps`: next/previous document and quick switcher.
+10. `step-10-search`: text search.
+11. `step-11-remember-position`: reopen each file on its last page
+    (security-scoped bookmarks: sandbox entitlement change, ask first).
 
 ## Status
-Current: step 04 done (verified by Arthur). The MVP is complete; Phase 2
-order is to be decided.
+Current: step 04 done (verified by Arthur); the MVP is complete. Next:
+step 05 (CI).
 Decided in step 01: name PDFReader, bundle id `com.arthurnorat.PDFReader`,
 target macOS 14.0; PDF declared as a document type (Viewer, Alternate) in
 `PDFReader/Info.plist`; recents via `NSDocumentController`.
