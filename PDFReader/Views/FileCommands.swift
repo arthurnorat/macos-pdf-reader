@@ -1,10 +1,5 @@
 import SwiftUI
 
-/// Items added to the File menu: Open… and Open Recent.
-///
-/// `Commands` is SwiftUI's way to build the app's menu bar. These items live
-/// at the app level, not inside a window, so they read the focused window
-/// through `@FocusedValue` to know where a file should go.
 struct FileCommands: Commands {
 
     @FocusedValue(\.documentURL) private var focusedDocumentURL

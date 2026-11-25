@@ -1,18 +1,11 @@
 import AppKit
 import UniformTypeIdentifiers
 
-/// The system "Open" panel, limited to PDFs.
-///
-/// `NSOpenPanel` (AppKit) is used instead of SwiftUI's `.fileImporter`
-/// because File > Open… must work even when no window is open, and
-/// `.fileImporter` needs a view to be attached to.
-///
-/// Sandbox: the user's choice in this panel is what grants the app
-/// permission to read the chosen files (the "user-selected files"
-/// entitlement, read-only).
+/// Uses `NSOpenPanel` rather than `.fileImporter` because File > Open… must
+/// work when no window is open.
 enum PDFOpenPanel {
 
-    /// Shows the panel and returns the chosen files (empty if cancelled).
+    /// Returns the chosen files, or an empty array if the user cancels.
     static func choosePDFs() -> [URL] {
         let panel = NSOpenPanel()
         panel.allowedContentTypes = [.pdf]
