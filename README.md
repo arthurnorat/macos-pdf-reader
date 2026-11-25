@@ -27,6 +27,17 @@ telemetry. Documents never leave your Mac.
   the page.
 - Full screen (⌃⌘F or the green window button).
 
+## Keyboard shortcuts
+
+| Action | Keys |
+|---|---|
+| Next / previous page | → / ←, Space / ⇧Space, ↓ / ↑, Page Down / Page Up |
+| First / last page | Home / End, ⌘↑ / ⌘↓ |
+| Zoom in / out | ⌘+ / ⌘− |
+| Fit the whole page | ⌘0 |
+
+When zoomed in, the arrows, Space and Page Up/Down scroll inside the page.
+
 ## Requirements
 
 - macOS 14 or later
@@ -71,6 +82,17 @@ telemetria. Os documentos nunca saem do seu Mac.
   continua inteira ao redimensionar a janela. Role ou aperte Page Down para
   virar a página.
 - Tela cheia (⌃⌘F ou o botão verde da janela).
+
+## Atalhos de teclado
+
+| Ação | Teclas |
+|---|---|
+| Próxima / anterior página | → / ←, Espaço / ⇧Espaço, ↓ / ↑, Page Down / Page Up |
+| Primeira / última página | Home / End, ⌘↑ / ⌘↓ |
+| Aumentar / diminuir zoom | ⌘+ / ⌘− |
+| Folha inteira | ⌘0 |
+
+Com zoom, as setas, o Espaço e Page Up/Down rolam dentro da página.
 
 ## Requisitos
 

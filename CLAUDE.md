@@ -60,12 +60,14 @@ Phase 2 (each its own step, detailed only after the MVP runs): search with
 remember last position per file.
 
 ## Status
-Current: step 03 done (verified by Arthur). Next: step 04.
+Current: step 04 done (verified by Arthur). The MVP is complete; Phase 2
+order is to be decided.
 Decided in step 01: name PDFReader, bundle id `com.arthurnorat.PDFReader`,
 target macOS 14.0; PDF declared as a document type (Viewer, Alternate) in
 `PDFReader/Info.plist`; recents via `NSDocumentController`.
 Decided in step 03: every file opens as a new tab (`tabbingMode = .preferred`);
 reopening a file creates another tab; window value is `ReaderTab` (URL + UUID).
-Open decisions to confirm with Arthur before the step that needs them:
-- Vim-style keys (`j`/`k`/`g`/`G`) in addition to the macOS ones (before
-  step 04).
+Decided in step 04: macOS keys only (no Vim); shortcuts shown in Go/View
+menus (only ⌘ shortcuts; bare keys in a menu would bypass the zoom logic);
+when zoomed in, arrows, Space and Page Up/Down scroll instead of turning the
+page.
