@@ -5,9 +5,14 @@ struct ReaderWindowView: View {
     @Binding var tab: ReaderTab?
 
     @State private var viewModel = ReaderViewModel()
+    @State private var controller = ReaderController()
     @Environment(\.openWindow) private var openWindow
 
     private var router: WindowRouter { WindowRouter(openWindow: openWindow) }
+
+    private var showsPDF: Bool {
+        if case .loaded = viewModel.state { true } else { false }
+    }
 
     var body: some View {
         content
@@ -34,6 +39,7 @@ struct ReaderWindowView: View {
             // creates a new one and an empty window is left behind.
             .handlesExternalEvents(preferring: ["*"], allowing: ["*"])
             .focusedSceneValue(\.readerTab, $tab)
+            .focusedSceneValue(\.readerController, showsPDF ? controller : nil)
     }
 
     @ViewBuilder
@@ -49,7 +55,7 @@ struct ReaderWindowView: View {
             }
 
         case .loaded(let document):
-            PDFReaderView(document: document)
+            PDFReaderView(document: document, controller: controller)
 
         case .failed(let message):
             ContentUnavailableView {

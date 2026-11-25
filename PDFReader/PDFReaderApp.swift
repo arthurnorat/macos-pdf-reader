@@ -15,6 +15,7 @@ struct PDFReaderApp: App {
         }
         .commands {
             FileCommands()
+            ReaderCommands()
         }
     }
 }

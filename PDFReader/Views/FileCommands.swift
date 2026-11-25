@@ -14,7 +14,7 @@ struct FileCommands: Commands {
             Button("Open…") {
                 router.open(PDFOpenPanel.choosePDFs(), into: focusedTab)
             }
-            .keyboardShortcut("o")
+            .keyboardShortcut(KeyBindings.open)
 
             Menu("Open Recent") {
                 ForEach(recents.urls, id: \.self) { url in
