@@ -46,10 +46,11 @@ MVP (straight to `main`, one step at a time, stop after each):
 1. `step-01-open-pdf`: window opens a PDF (open panel, drag, recents) in a
    `PDFView`; empty and error states. ADRs: `WindowGroup(for:)` over
    `DocumentGroup`; sandbox without network.
-2. `step-02-reading-surface`: borderless-feel window, full screen, and the
-   default view is ONE FULL PAGE: a portrait page fits the window from top
-   to bottom, like Acrobat's "Zoom to Page Level" (requirement from Arthur,
-   very important; replaces the original fit-to-width idea).
+2. `step-02-reading-surface`: the default view is ONE FULL PAGE, page by
+   page (`.singlePage` + `autoScales`): a portrait page fits the window from
+   top to bottom, like Acrobat's "Zoom to Page Level" (requirement from
+   Arthur, very important). Native full screen. Standard title bar and gray
+   background (Arthur dropped the borderless-feel idea).
 3. `step-03-tabs`: native tabs, same file open in two tabs.
 4. `step-04-keyboard`: `KeyboardPDFView` and `KeyBindings.swift`.
 
@@ -59,14 +60,13 @@ Phase 2 (each its own step, detailed only after the MVP runs): search with
 remember last position per file.
 
 ## Status
-Current: step 01 done (verified by Arthur). Next: step 02.
+Current: step 02 done (verified by Arthur). Next: trim code comments, then
+step 03.
 Decided in step 01: name PDFReader, bundle id `com.arthurnorat.PDFReader`,
 target macOS 14.0; PDF declared as a document type (Viewer, Alternate) in
 `PDFReader/Info.plist`; recents via `NSDocumentController`.
 Note for step 03: `WindowGroup(for: URL.self)` dedupes windows by value, so
 the same file in two tabs needs a per-tab value (URL + UUID).
 Open decisions to confirm with Arthur before the step that needs them:
-- Full-page view: page-by-page (one page per screen) or continuous scroll
-  that keeps the page-height zoom (before step 02).
 - Vim-style keys (`j`/`k`/`g`/`G`) in addition to the macOS ones (before
   step 04).

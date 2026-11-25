@@ -22,6 +22,10 @@ telemetry. Documents never leave your Mac.
   file you open.
 - Clear error messages for missing files, files that are not PDFs, and
   damaged or password-protected PDFs.
+- One full page at a time: each page fits the window from top to bottom and
+  stays whole when you resize the window. Scroll or press Page Down to turn
+  the page.
+- Full screen (⌃⌘F or the green window button).
 
 ## Requirements
 
@@ -62,6 +66,10 @@ telemetria. Os documentos nunca saem do seu Mac.
   para o primeiro arquivo aberto.
 - Mensagens de erro claras para arquivo não encontrado, arquivo que não é
   PDF e PDF danificado ou protegido por senha.
+- Uma folha inteira por vez: cada página ocupa a janela de cima a baixo e
+  continua inteira ao redimensionar a janela. Role ou aperte Page Down para
+  virar a página.
+- Tela cheia (⌃⌘F ou o botão verde da janela).
 
 ## Requisitos
 
