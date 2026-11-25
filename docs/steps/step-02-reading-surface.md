@@ -28,9 +28,20 @@ então ficou a opção mais simples, com o nome do arquivo sempre visível.
 o ⌃⌘F e *View › Enter Full Screen*, e o `autoScales` mantém a folha inteira
 também em tela cheia.
 
+**Sem detecção de dados no texto.** O PDFKit reconhece números do processo
+como telefones: mostra uma caixa ao passar o mouse e liga ao clicar. Isso
+atrapalha copiar o "Num.". As chaves de desligar (`enableDataDetectors`) não
+têm efeito no macOS 26, então as páginas são criadas por uma subclasse que
+nunca reporta dados detectados.
+
+| Opção | Ganha | Custa |
+|---|---|---|
+| Subclasse de `PDFPage` (escolhida) | Remove caixa, balão e link de uma vez; o texto continua selecionável. | Substitui métodos internos do PDFKit: pode parar de funcionar numa versão futura do macOS. |
+| Bloquear só o clique (`PDFViewDelegate`, API pública) | Estável. | A caixa e o balão continuam. |
+
 ## Como o código funciona
 
-A única mudança está em `PDFReader/Views/PDFReaderView.swift`:
+**Folha inteira** — em `PDFReader/Views/PDFReaderView.swift`:
 
 ```swift
 pdfView.displayMode = .singlePage
@@ -48,6 +59,22 @@ pdfView.autoScales = true
 As duas linhas vêm antes de `pdfView.document = document`, para o PDF já ser
 desenhado na forma final. A configuração fica na View porque é apresentação:
 o ViewModel decide **qual** documento mostrar; a View decide **como**.
+
+**Sem detecção de dados** — em `PDFReader/Services/QuietPDFPage.swift`:
+
+- `QuietPDFPage` **herda** de `PDFPage`, a classe da Apple que representa
+  cada página: faz tudo o que ela faz, mas **substitui** (*override*) os
+  métodos de detecção para responderem "nada encontrado". Como esses métodos
+  são internos, `@objc(nome)` dá ao método Swift o nome exato do original.
+- `QuietPageProvider` adota o protocolo **`PDFDocumentDelegate`** (da Apple) e
+  responde `classForPage()` com `QuietPDFPage`. Esse é o padrão **Delegate**:
+  o `PDFDocument` consulta um objeto nosso para decidir que classe usar ao
+  criar as páginas.
+- O `DocumentService` liga os dois com `document.delegate = pageProvider` e
+  guarda o provider numa propriedade, porque o `delegate` é `weak` (não mantém
+  o objeto vivo sozinho).
+- As classes são `nonisolated` porque o PDFKit pode chamá-las fora da main
+  thread, enquanto desenha as páginas.
 
 ## Conexão com o próximo step
 
